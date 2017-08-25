@@ -5,8 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
+
+import {BLE} from "@ionic-native/ble";
+
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [
+    BLE
+  ]
 })
 export class MyApp {
   rootPage:any = TabsPage;

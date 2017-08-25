@@ -1,5 +1,8 @@
 {
-  "name": "2017-08-dogtag-ionic2",
-  "app_id": "",
-  "type": "ionic-angular"
+  "name": "2017-08-dogtag-ionic",
+  "app_id": "719a9d85",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }
