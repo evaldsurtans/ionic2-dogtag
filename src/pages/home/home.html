@@ -1,12 +1,29 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Tracking</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding #uiContent>
-  <button style="padding:10px" (click)="onSend()">Send</button>
-  <div *ngFor="let log of _logs">
-    {{ log }}
-  </div>
+
+  <ion-grid>
+    <ion-row align-items-stretch>
+      <ion-col>
+        <button #uiButtonTrack ion-button  [color]="_mode != 0 ? 'light' : 'primary'"  (click)="OnButtonTrack()">Track</button>
+        <button #uiButtonSitDown ion-button [color]="_mode != 1 ? 'light' : 'primary'" (click)="OnButtonSitDown()">Sit down</button>
+        <button #uiButtonStandUp ion-button [color]="_mode != 2 ? 'light' : 'primary'" (click)="OnButtonStandUp()">Stand up</button>
+        <button #uiButtonWalk ion-button [color]="_mode != 3 ? 'light' : 'primary'" (click)="OnButtonWalk()">Walk</button>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-stretch>
+      <ion-col>
+        <div *ngFor="let log of _logs">
+          {{ log }}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
 </ion-content>

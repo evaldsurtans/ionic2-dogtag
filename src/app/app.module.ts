@@ -15,6 +15,8 @@ import { HttpModule } from '@angular/http';
 
 import { LightBlueModule } from 'ionic-lightblue';
 
+import { BackgroundMode } from '@ionic-native/background-mode';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -40,6 +42,7 @@ import { LightBlueModule } from 'ionic-lightblue';
   providers: [
     StatusBar,
     SplashScreen,
+    BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
