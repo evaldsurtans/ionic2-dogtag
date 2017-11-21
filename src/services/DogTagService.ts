@@ -28,12 +28,13 @@ export class DogTagService {
     return new Promise<any>((resolve: (res: string)=> void, reject: (res: string)=> void) => {
       if(this._is_waiting)
       {
-        reject('still waiting prev. action');
+        reject('Bluetooth: still waiting prev. action');
         return;
       }
       this._is_waiting = true;
 
-      this.lightblue.connect(LIGHTBLUE_NAME).subscribe(next => {
+      this._loggingObject.addLogMessage('start connecting');
+      this.lightblue.connect(LIGHTBLUE_NAME, 10000).subscribe(next => {
         this._loggingObject.addLogMessage('connected');
 
         this.lightblue.readSerial().subscribe(data => {

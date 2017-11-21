@@ -48,6 +48,12 @@ export class HomePage {
     });
   }
 
+  registerFetchData() {
+    this._timeoutFetchData = setTimeout(()=> {
+      this.fetchData();
+    }, TIMEOUT_BACKGROUND_SYNC * 60 * 1000);
+  }
+
   fetchData() {
     try {
       if(this._timeoutFetchData != null) {
@@ -61,6 +67,7 @@ export class HomePage {
           this.addLogMessage("Data Len:" + jsonData.data.length.toString());
           this.addLogMessage(data);
 
+          // Add tracking mode to server
           jsonData.mode = this._mode;
           this._dataRecords.push(jsonData);
 
@@ -76,26 +83,29 @@ export class HomePage {
             if(JSON.parse(response.text()).success) {
               this._dataRecords = [];
             }
+          }, error => {
+            this.addLogMessage(error.toString());
           });
+          this.registerFetchData();
         }
         catch (exc) {
           this.addLogMessage(exc);
+          this.registerFetchData();
         }
       }).catch(error => {
         this.addLogMessage(error);
+        this.registerFetchData();
       });
     }
     catch (exc2) {
       this.addLogMessage(exc2);
+      this.registerFetchData();
     }
 
-    this._timeoutFetchData = setTimeout(()=> {
-      this.fetchData();
-    }, TIMEOUT_BACKGROUND_SYNC * 60 * 1000);
   }
 
   addLogMessage(msg: String) {
-    this._logs.push(msg);
+    this._logs.splice(0, 0, msg);
     this.changeDetectorRef.detectChanges();
   }
 

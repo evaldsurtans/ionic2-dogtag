@@ -6,20 +6,22 @@
 
 <ion-content padding #uiContent>
 
-  <ion-grid>
+  <ion-grid style="height: 100%">
     <ion-row align-items-stretch>
       <ion-col>
-        <button #uiButtonTrack ion-button  [color]="_mode != 0 ? 'light' : 'primary'"  (click)="OnButtonTrack()">Track</button>
+        <button #uiButtonTrack ion-button  [color]="_mode != 0 ? 'light' : 'primary'"  (click)="OnButtonTrack()">Passive</button>
         <button #uiButtonSitDown ion-button [color]="_mode != 1 ? 'light' : 'primary'" (click)="OnButtonSitDown()">Sit down</button>
         <button #uiButtonStandUp ion-button [color]="_mode != 2 ? 'light' : 'primary'" (click)="OnButtonStandUp()">Stand up</button>
         <button #uiButtonWalk ion-button [color]="_mode != 3 ? 'light' : 'primary'" (click)="OnButtonWalk()">Walk</button>
       </ion-col>
     </ion-row>
-    <ion-row align-items-stretch>
-      <ion-col>
-        <div *ngFor="let log of _logs">
-          {{ log }}
-        </div>
+    <ion-row align-items-stretch style="height: 100%">
+      <ion-col align-self-stretch>
+        <ion-scroll scrollY="true" style="width: 100%; height: 100%;">
+          <div *ngFor="let log of _logs">
+            {{ log }}
+          </div>
+        </ion-scroll>
       </ion-col>
     </ion-row>
   </ion-grid>
